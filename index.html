@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
     <style>
         [x-cloak] { display: none !important; }
         body { font-family: 'Noto Sans TC', sans-serif; background-color: #f4f6f3; scroll-behavior: smooth; }
@@ -17,7 +18,6 @@
         .cta-destructive:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -5px rgba(197, 160, 89, 0.7), 0 10px 0 #8E713A; }
         .card-active { border: 4px solid #1A302B !important; background-color: #fffdf5 !important; box-shadow: 0 15px 30px -5px rgba(197, 160, 89, 0.3) !important; color: #1A302B !important; z-index: 20; position: relative; }
         .hover-zoom { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .hover-zoom:hover { transform: scale(1.05); }
     </style>
 </head>
 <body x-data="quoteSystem()" class="text-slate-900 leading-relaxed text-base md:text-lg">
@@ -25,24 +25,30 @@
     <header class="hero-spotlight text-white py-16 md:py-32 px-6 text-center relative overflow-hidden">
         <div class="max-w-5xl mx-auto relative z-10 text-center">
             <div class="flex justify-center gap-3 mb-8 opacity-90 flex-wrap">
-                <span class="bg-white/10 px-4 py-1.5 rounded-full text-sm font-bold border border-white/20">ISO 22000 / HACCP / FDA 國際認證</span>
+                <span class="bg-white/10 px-4 py-1.5 rounded-full text-sm font-bold border border-white/20 whitespace-nowrap">ISO 22000 / HACCP / FDA 國際認證</span>
             </div>
-            <h1 class="text-3xl md:text-7xl font-black mb-8 leading-tight tracking-tighter">茶包客製化 <span class="text-[#C5A059] text-glow-gold">正式報價</span> 系統</h1>
-            <p class="text-base md:text-2xl text-slate-300 font-medium max-w-3xl mx-auto leading-relaxed">省略無效詢問，獲取具備採購標準與法律效力的正式報價單。</p>
+            <h1 class="text-3xl md:text-7xl font-black mb-8 leading-tight tracking-tighter break-words">
+                茶包客製化 <span class="text-[#C5A059] text-glow-gold">正式報價</span> 系統
+            </h1>
+            <p class="text-base md:text-2xl text-slate-300 font-medium max-w-3xl mx-auto leading-relaxed break-words px-4">
+                省略無效詢問，獲取具備採購標準與法律效力的正式報價單。
+            </p>
         </div>
     </header>
 
     <main class="max-w-7xl mx-auto py-12 px-4 md:px-6">
         
-        <section class="mb-16 text-center">
-            <h2 class="text-2xl md:text-4xl font-black text-slate-900 mb-10">步驟一：您的品牌經營階段</h2>
+        <section class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-4xl font-black text-slate-900 text-center">步驟一：您的品牌經營階段</h2>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <template x-for="stage in stages" :key="stage.id">
-                    <button @click="selectStage(stage)" :class="selectedStageId === stage.id ? 'card-active scale-105' : 'bg-white border border-gray-200'" class="p-8 rounded-[2rem] text-center transition-all relative shadow-sm">
-                        <div x-show="stage.recommended" class="absolute top-0 right-0 bg-[#C5A059] text-[#1A302B] text-xs px-4 py-1.5 rounded-bl-2xl font-black text-center">推薦方案</div>
+                    <button @click="selectStage(stage)" :class="selectedStageId === stage.id ? 'card-active scale-105' : 'bg-white border border-gray-200'" class="p-8 rounded-[2rem] text-center transition-all relative flex flex-col items-center shadow-sm">
+                        <div x-show="stage.recommended" class="absolute top-0 right-0 bg-[#C5A059] text-[#1A302B] text-xs px-4 py-1.5 rounded-bl-2xl font-black">推薦方案</div>
                         <div class="text-5xl mb-6" x-text="stage.icon"></div>
-                        <h3 class="text-xl md:text-2xl font-black mb-3 text-center" x-text="stage.name"></h3>
-                        <p class="text-slate-600 text-sm md:text-base leading-relaxed text-center" x-text="stage.desc"></p>
+                        <h3 class="text-xl md:text-2xl font-black mb-3" x-text="stage.name"></h3>
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed" x-text="stage.desc"></p>
                     </button>
                 </template>
             </div>
@@ -58,10 +64,10 @@
                             <div class="relative text-center">
                                 <button @click="selectPlan(plan)" :class="selectedPlanId === plan.id ? 'card-active scale-105 border-slate-900' : (plan.id === 'C' ? 'border-[#C5A059] bg-[#FFFDF5]' : getPlanBg(plan.id)) + ' border-transparent'" class="w-full py-6 px-1 rounded-xl transition-all border-4 flex flex-col items-center justify-center min-h-[130px]">
                                     <div class="text-[10px] md:text-xs opacity-80 font-black mb-1 uppercase">方案 <span x-text="plan.id"></span></div>
-                                    <div class="font-black leading-tight text-center"><span x-text="plan.name"></span></div>
-                                    <div class="text-[10px] md:text-xs mt-2 opacity-80 font-bold">起訂: <span x-text="plan.moq"></span></div>
+                                    <div class="font-black leading-tight text-center" x-text="plan.name"></div>
+                                    <div class="text-[10px] md:text-xs mt-2 opacity-80 font-bold text-center">起訂: <span x-text="plan.moq"></span></div>
                                 </button>
-                                <template x-if="plan.id === 'C'"><div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-[#C5A059] text-[#1A302B] text-[10px] px-3 py-1 rounded-full font-black shadow-md whitespace-nowrap z-10">最受歡迎 ⭐</div></template>
+                                <template x-if="plan.id === 'C'"><div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-[#C5A059] text-[#1A302B] text-[10px] px-3 py-1 rounded-full font-black shadow-md z-10 whitespace-nowrap">最受歡迎 ⭐</div></template>
                             </div>
                         </template>
                     </div>
@@ -69,12 +75,11 @@
 
                 <div class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-sm border border-slate-100">
                     <h2 class="text-xl md:text-2xl font-black mb-2 flex items-center"><span class="bg-slate-900 text-white w-8 h-8 rounded-full inline-flex items-center justify-center mr-4 text-sm font-black">03</span>茶包內袋材質</h2>
-                    <p class="text-slate-400 text-sm mb-8 ml-12 font-bold">標準規格：5.8 × 5.8 公分 (所有方案固定)</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-0 md:ml-12">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-0 md:ml-12 text-left">
                         <template x-for="mat in materials" :key="mat.name">
-                            <button @click="selectedMaterial = mat" :class="selectedMaterial.name === mat.name ? 'card-active ring-2' : getMatBg(mat.type) + ' border-transparent text-slate-700'" class="p-5 rounded-2xl text-left transition-all border-4 flex flex-col justify-between min-h-[110px]">
-                                <div class="flex justify-between items-center mb-2"><span class="font-black text-base" x-text="mat.name"></span><span :class="selectedMaterial.name === mat.name ? 'bg-slate-900 text-white' : 'bg-white/50 text-slate-800'" class="text-[10px] px-2 py-0.5 rounded font-black uppercase" x-text="mat.type"></span></div>
-                                <div class="text-[#1A302B] font-black">+ 每包 <span x-text="mat.surcharge.toFixed(1)"></span> 元</div>
+                            <button @click="selectedMaterial = mat" :class="selectedMaterial.name === mat.name ? 'card-active ring-2' : getMatBg(mat.type) + ' border-transparent text-slate-700'" class="p-5 rounded-2xl transition-all border-4 flex flex-col justify-between min-h-[110px]">
+                                <div class="flex justify-between items-center"><span class="font-black text-base" x-text="mat.name"></span><span :class="selectedMaterial.name === mat.name ? 'bg-slate-900 text-white' : 'bg-white/50 text-slate-800'" class="text-[10px] px-2 py-0.5 rounded font-black uppercase" x-text="mat.type"></span></div>
+                                <div class="text-[#1A302B] font-black text-lg">+ 每包 <span x-text="mat.surcharge.toFixed(1)"></span> 元</div>
                             </button>
                         </template>
                     </div>
@@ -84,85 +89,100 @@
                     <h2 class="text-xl md:text-2xl font-black mb-8 flex items-center"><span class="bg-slate-900 text-white w-8 h-8 rounded-full inline-flex items-center justify-center mr-4 text-sm font-black">04</span>包裝結構與下載</h2>
                     <div class="ml-0 md:ml-12">
                         <div x-show="canBox" class="bg-slate-900 text-white p-8 rounded-[2.5rem] flex flex-col md:flex-row gap-8 items-center mb-10 text-left">
-                            <div class="flex-1 space-y-4 text-left"><div class="bg-[#C5A059] text-[#1A302B] px-4 py-1.5 rounded-full text-sm font-black inline-block uppercase tracking-widest" x-text="boxName"></div><ul class="text-sm md:text-lg space-y-2 text-slate-400 font-medium text-left"><li class="flex items-center text-left">• 尺寸：10 × 10 × 11.5 cm</li><li class="flex items-center text-left">• 材質：白卡 45T / 霧膜處理</li></ul></div>
-                            <div class="flex flex-col items-center gap-3"><a href="https://www.bpbpack.com.tw/products/3a14-16006" target="_blank" class="bg-white/10 p-2 rounded-3xl border border-white/20 hover-zoom shadow-2xl relative"><div class="w-32 h-32 md:w-40 md:h-40 bg-white rounded-2xl flex items-center justify-center p-2 text-center"><img src="https://www.bpbpack.com.tw/archive/products/item/3a14-16006/3a14-16006_01.jpg" class="w-full h-full object-contain"></div></a><p class="text-[10px] text-[#C5A059] font-black text-center">點擊查看專業盒型規格</p></div>
-                        </div>
-                        <div class="pt-8 border-t border-slate-100 text-left">
-                            <p class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">設計用刀模下載 / Templates (點擊立即下載)</p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <a href="https://drive.google.com/uc?export=download&id=1NJ1KLuRwE_eFzVCnb1qX1tD2uFF6JFKL" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200 hover:border-slate-400 transition-all group"><div><p class="text-[10px] text-slate-400 font-bold">外袋空白刀模</p><p class="text-sm font-black">105 × 90 mm</p></div><span class="text-[10px] bg-slate-900 text-white px-3 py-1 rounded-full group-hover:bg-[#C5A059] text-center">下載 .AI</span></a>
-                                <a href="https://drive.google.com/uc?export=download&id=1w85ERYJze6K_HWoYHO_aovvyEGBRWgXc" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200 hover:border-slate-400 transition-all group"><div><p class="text-[10px] text-slate-400 font-bold">上掀盒(M) 刀模</p><p class="text-sm font-black">對應荷包袋</p></div><span class="text-[10px] bg-slate-900 text-white px-3 py-1 rounded-full group-hover:bg-[#C5A059] text-center">下載 .PDF</span></a>
+                            <div class="flex-1 space-y-4">
+                                <div class="bg-[#C5A059] text-[#1A302B] px-4 py-1.5 rounded-full text-sm font-black inline-block uppercase tracking-widest" x-text="boxName"></div>
+                                <ul class="text-sm md:text-lg space-y-2 text-slate-400 font-medium"><li>• 尺寸：10 × 10 × 11.5 cm</li><li>• 材質：白卡 45T / 霧膜處理</li></ul>
                             </div>
+                            <div class="flex flex-col items-center gap-3">
+                                <a href="https://www.bpbpack.com.tw/products/3a14-16006" target="_blank" class="bg-white/10 p-2 rounded-3xl border border-white/20 hover-zoom shadow-2xl relative">
+                                    <div class="w-32 h-32 md:w-40 md:h-40 bg-white rounded-2xl flex items-center justify-center p-2"><img src="https://www.bpbpack.com.tw/archive/products/item/3a14-16006/3a14-16006_01.jpg" class="w-full h-full object-contain"></div>
+                                </a>
+                                <p class="text-[10px] text-[#C5A059] font-black text-center">查看專業盒型規格</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-8 border-t border-slate-100 text-left">
+                            <p class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">設計用刀模下載 (點擊直接下載)</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <a href="https://drive.google.com/uc?export=download&id=1NJ1KLuRwE_eFzVCnb1qX1tD2uFF6JFKL" target="_blank" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200 hover:border-slate-400 transition-all group">
+                                    <div><p class="text-[10px] text-slate-400 font-bold">外袋空白刀模</p><p class="text-sm font-black">105 × 90 mm</p></div>
+                                    <span class="text-[10px] bg-slate-900 text-white px-3 py-1 rounded-full group-hover:bg-[#C5A059]">下載 .AI</span>
+                                </a>
+                                <a href="https://drive.google.com/uc?export=download&id=1w85ERYJze6K_HWoYHO_aovvyEGBRWgXc" target="_blank" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200 hover:border-slate-400 transition-all group">
+                                    <div><p class="text-[10px] text-slate-400 font-bold">上掀盒(M) 刀模</p><p class="text-sm font-black text-slate-700">對應荷包袋</p></div>
+                                    <span class="text-[10px] bg-slate-900 text-white px-3 py-1 rounded-full group-hover:bg-[#C5A059]">下載 .PDF</span>
+                                </a>
+                            </div>
+                            <p class="mt-4 text-[10px] text-slate-400 font-medium bg-slate-50 p-3 rounded-xl border-l-4 border-slate-200">
+                                💡 提醒：請依原始刀模尺寸設計，完成後於下方成功頁面上傳。
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 <div class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-sm border border-slate-100">
-                    <h2 class="text-xl md:text-2xl font-black mb-8 flex items-center text-center"><span class="bg-slate-900 text-white w-8 h-8 rounded-full inline-flex items-center justify-center mr-4 text-sm font-black">05</span>設定訂購數量</h2>
-                    <div class="grid grid-cols-3 md:grid-cols-5 gap-3 ml-0 md:ml-12">
-                        <template x-for="qty in qtyOptions" :key="qty"><button @click="quantity = qty" x-show="qty >= minMoq" :class="quantity === qty ? 'bg-slate-900 text-white font-black shadow-2xl' : 'bg-slate-100 text-slate-400 font-bold'" class="py-4 text-base rounded-xl transition-all text-center" x-text="qty.toLocaleString()"></button></template>
+                    <h2 class="text-xl md:text-2xl font-black mb-8 flex items-center"><span class="bg-slate-900 text-white w-8 h-8 rounded-full inline-flex items-center justify-center mr-4 text-sm font-black">05</span>設定訂購數量</h2>
+                    <div class="grid grid-cols-3 md:grid-cols-5 gap-3 ml-0 md:ml-12 text-center">
+                        <template x-for="qty in qtyOptions" :key="qty">
+                            <button @click="quantity = qty" x-show="qty >= minMoq" :class="quantity === qty ? 'bg-slate-900 text-white font-black' : 'bg-slate-100 text-slate-400 font-bold'" class="py-4 text-base rounded-xl transition-all shadow-sm" x-text="qty.toLocaleString()"></button>
+                        </template>
                     </div>
                 </div>
             </div>
 
             <aside class="lg:col-span-5 sticky top-8">
                 <div class="bg-[#1A302B] rounded-[2.5rem] p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
-                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-[#C5A059] opacity-10 rounded-full blur-3xl text-center"></div>
-                    <h3 class="text-xs md:text-sm font-black tracking-widest text-[#C5A059] mb-10 uppercase text-center">報價明細總結</h3>
-                    <div class="space-y-6 text-base font-medium mb-10 text-center">
-                        <div class="flex justify-between border-b border-white/10 pb-4 text-left"><span class="opacity-60">選購方案</span><span class="font-black text-right" x-text="'方案 ' + selectedPlanId + '｜' + selectedPlan.name"></span></div>
-                        <div class="flex justify-between border-b border-white/10 pb-4 text-left"><span class="opacity-60">內袋材質加價</span><span class="text-[#C5A059] font-black text-right" x-text="'+ NT$ ' + selectedMaterial.surcharge"></span></div>
+                    <h3 class="text-xs md:text-sm font-black tracking-[0.3em] text-[#C5A059] mb-10 uppercase text-center">報價明細總結</h3>
+                    <div class="space-y-6 text-base font-medium mb-10 text-left">
+                        <div class="flex justify-between border-b border-white/10 pb-4 text-left"><span class="opacity-60 text-left">選購方案</span><span class="font-black text-right text-right" x-text="'方案 ' + selectedPlanId"></span></div>
+                        <div class="flex justify-between border-b border-white/10 pb-4 text-left"><span class="opacity-60 text-left">材質加價</span><span class="text-[#C5A059] font-black text-right text-right" x-text="'+ NT$ ' + selectedMaterial.surcharge"></span></div>
                     </div>
-                    <div class="gold-value-block p-8 rounded-[2rem] text-[#1A302B] mb-10 text-center">
-                        <div class="flex justify-between items-end mb-8 text-center text-left"><span>最終單價</span><span class="text-3xl md:text-5xl font-black text-right" x-text="'NT$ ' + finalUnitPrice"></span></div>
-                        <div class="pt-8 border-t border-[#1A302B]/20 text-center text-left"><span>專案預估總額</span><div class="text-4xl md:text-6xl font-black text-center text-right">NT$ <span x-text="totalPrice.toLocaleString()"></span></div></div>
+                    <div class="gold-value-block p-8 rounded-[2.5rem] text-[#1A302B] mb-10 text-center">
+                        <div class="flex justify-between items-end mb-8 text-center text-left"><span>最終單價</span><span class="text-3xl md:text-6xl font-black text-right" x-text="'NT$ ' + finalUnitPrice"></span></div>
+                        <div class="pt-8 border-t border-[#1A302B]/20 text-center text-left"><span>專案預估總額</span><div class="text-4xl md:text-6xl font-black">NT$ <span x-text="totalPrice.toLocaleString()"></span></div></div>
                     </div>
                     <button @click="showForm = true; $nextTick(() => document.getElementById('form-section').scrollIntoView({behavior:'smooth'}))" class="cta-destructive w-full text-[#1A302B] py-8 rounded-[2.5rem] font-black text-xl md:text-3xl tracking-widest text-center">產出正式報價單</button>
-                    <p class="text-center text-[10px] opacity-40 font-black mt-4 px-4 uppercase tracking-widest text-center">由 Teaauction Co., Ltd. 報價系統驗證</p>
+                    <p class="text-center text-[10px] opacity-40 font-black mt-4 px-4 tracking-widest uppercase">由 Teaauction Co., Ltd. 系統驗證</p>
                 </div>
             </aside>
         </div>
 
         <section id="form-section" x-show="showForm" x-transition class="mt-24 max-w-4xl mx-auto pb-32">
             <div class="bg-[#1A302B] text-white p-8 rounded-t-[4rem] text-center border-b border-[#C5A059]/30">
-                <p class="text-lg md:text-2xl font-black leading-relaxed">您目前設定的規格，將作為正式報價與生產依據。<br>PDF 報價單產出後，規格將進入鎖定流程。</p>
-                <p class="text-sm text-[#C5A059] font-bold mt-4">如需更改，需重新建立一份新報價。</p>
+                <p class="text-lg md:text-2xl font-black">PDF 報價單產出後，規格將進入鎖定流程。</p>
             </div>
             <div class="bg-white p-12 rounded-b-[4rem] shadow-2xl border border-slate-100">
                 <form @submit.prevent="handleSubmit" class="space-y-10">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <div class="space-y-4 text-left"><label class="text-base font-black text-slate-800">公司抬頭 / 統編 *</label><input type="text" x-model="formData.company" required class="w-full px-8 py-5 bg-slate-50 border-none rounded-2xl focus:ring-4 focus:ring-[#C5A059]/40 font-bold" placeholder="輸入公司名稱"></div>
-                        <div class="space-y-4 text-left"><label class="text-base font-black text-slate-800">聯絡人姓名 *</label><input type="text" x-model="formData.name" required class="w-full px-8 py-5 bg-slate-50 border-none rounded-2xl focus:ring-4 focus:ring-[#C5A059]/40 font-bold" placeholder="您的真實姓名"></div>
+                        <div class="space-y-4 text-left"><label class="text-base font-black">公司抬頭 / 統編 *</label><input type="text" x-model="formData.company" required class="w-full px-8 py-5 bg-slate-50 border-none rounded-2xl font-bold" placeholder="輸入公司名稱"></div>
+                        <div class="space-y-4 text-left"><label class="text-base font-black">聯絡人姓名 *</label><input type="text" x-model="formData.name" required class="w-full px-8 py-5 bg-slate-50 border-none rounded-2xl font-bold" placeholder="您的姓名"></div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <div class="space-y-4 text-left"><label class="text-base font-black text-slate-800">接收報價之 Email *</label><input type="email" x-model="formData.email" required class="w-full px-8 py-5 bg-slate-50 border-none rounded-2xl focus:ring-4 focus:ring-[#C5A059]/40 font-bold" placeholder="報價單將寄送至此"></div>
-                        <div class="space-y-4 text-left"><label class="text-base font-black text-slate-800">聯絡電話 / LINE *</label><input type="text" x-model="formData.contact" required class="w-full px-8 py-5 bg-slate-50 border-none rounded-2xl focus:ring-4 focus:ring-[#C5A059]/40 font-bold" placeholder="以便顧問確認生產細節"></div>
+                        <div class="space-y-4 text-left"><label class="text-base font-black text-left">接收報價之 Email *</label><input type="email" x-model="formData.email" required class="w-full px-8 py-5 bg-slate-50 border-none rounded-2xl font-bold" placeholder="報價單將寄送至此"></div>
+                        <div class="space-y-4 text-left"><label class="text-base font-black text-left">電話 / LINE ID *</label><input type="text" x-model="formData.contact" required class="w-full px-8 py-5 bg-slate-50 border-none rounded-2xl font-bold" placeholder="後續確認細節用"></div>
                     </div>
-                    <div class="text-center">
-                        <button type="submit" :disabled="loading" class="w-full bg-slate-900 text-white py-8 rounded-[2.5rem] font-black text-2xl md:text-4xl shadow-2xl hover:bg-black transition-all flex justify-center items-center text-center">
-                            <span x-show="!loading">確認規格並寄送報價單</span>
-                            <span x-show="loading" class="flex items-center text-center"><svg class="animate-spin h-8 w-8 mr-4 text-[#C5A059]" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>建立報價編號中...</span>
-                        </button>
-                        <p class="mt-6 text-sm text-slate-400 font-bold text-center">「此報價單可作為內部請購、對帳與採購依據」</p>
-                    </div>
+                    <button type="submit" :disabled="loading" class="w-full bg-slate-900 text-white py-8 rounded-[2.5rem] font-black text-2xl md:text-4xl flex justify-center items-center">
+                        <span x-show="!loading" class="text-center">確認規格並寄送報價單</span>
+                        <span x-show="loading" class="flex items-center text-center"><svg class="animate-spin h-8 w-8 mr-4 text-[#C5A059]" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>處理中...</span>
+                    </button>
                 </form>
             </div>
         </section>
     </main>
 
     <div x-show="showSuccess" class="fixed inset-0 bg-slate-900/95 backdrop-blur-3xl flex items-center justify-center z-50 p-6" x-cloak x-transition>
-        <div class="bg-white rounded-[4rem] p-12 md:p-16 max-w-2xl w-full text-center relative shadow-2xl overflow-y-auto max-h-[90vh]">
-            <div class="w-20 h-20 bg-[#C5A059]/10 text-[#C5A059] rounded-full flex items-center justify-center mx-auto mb-6 text-5xl text-center">✓</div>
-            <h3 class="text-2xl md:text-4xl font-black text-slate-900 mb-2 text-center">正式報價單已完成建立</h3>
-            <p class="text-[#C5A059] font-black text-lg md:text-2xl mb-8 text-center">報價編號：<span x-text="quoteNumber"></span></p>
-            
-            <div class="mt-8 p-6 bg-slate-50 rounded-[2rem] border-2 border-dashed border-slate-200 text-left" x-data="{ uploadLoading: false, uploadDone: false, fileName: '' }">
-                <h4 class="font-black text-slate-900 mb-2 text-left">上傳設計稿 / Upload Design</h4>
-                <p class="text-[10px] md:text-xs text-slate-500 mb-4 font-medium leading-relaxed text-left">請依刀模完成設計後再上傳。一經上傳，即視為打樣與生產依據。</p>
+        <div class="bg-white rounded-[4rem] p-10 md:p-16 max-w-2xl w-full text-center shadow-2xl overflow-y-auto max-h-[90vh]">
+            <div class="w-20 h-20 bg-[#C5A059]/10 text-[#C5A059] rounded-full flex items-center justify-center mx-auto mb-6 text-5xl">✓</div>
+            <h3 class="text-2xl md:text-4xl font-black text-slate-900 mb-2">正式報價單已完成建立</h3>
+            <p class="text-[#C5A059] font-black text-lg mb-8">報價編號：<span x-text="quoteNumber"></span></p>
+
+            <div class="mt-8 p-6 bg-slate-50 rounded-[2rem] border-2 border-dashed border-slate-200 text-left text-left" x-data="{ uploadLoading: false, uploadDone: false, fileName: '' }">
+                <h4 class="font-black text-slate-900 mb-2">上傳設計稿 / Upload Design</h4>
+                <p class="text-[10px] md:text-xs text-slate-500 mb-4 font-medium leading-relaxed">請依刀模完成設計後再上傳。一經上傳，即視為打樣與生產依據。</p>
                 <div class="space-y-4">
                     <input type="file" id="designFile" @change="fileName = $event.target.files[0].name" accept=".ai,.pdf,.zip" class="hidden">
                     <div class="flex items-center gap-3">
-                        <button type="button" @click="document.getElementById('designFile').click()" :disabled="uploadLoading || uploadDone" class="bg-white border border-slate-300 text-slate-700 px-4 py-2 rounded-xl text-xs font-black hover:bg-slate-50 transition-all flex-shrink-0">選擇檔案 (.ai, .pdf)</button>
+                        <button type="button" @click="document.getElementById('designFile').click()" :disabled="uploadLoading || uploadDone" class="bg-white border border-slate-300 text-slate-700 px-4 py-2 rounded-xl text-xs font-black hover:bg-slate-50 transition-all">選擇檔案 (.ai, .pdf)</button>
                         <span class="text-xs text-slate-400 truncate font-bold" x-text="fileName || '尚未選擇檔案'"></span>
                     </div>
                     <button type="button" x-show="fileName && !uploadDone" @click="
@@ -186,12 +206,13 @@
                                 uploadDone = true;
                             } catch (e) { alert('上傳失敗'); } finally { uploadLoading = false; }
                         };" class="w-full bg-slate-900 text-white py-3 rounded-xl font-black text-sm hover:bg-black text-center flex justify-center items-center">
-                        <span x-show="!uploadLoading">確認上傳設計稿</span>
+                        <span x-show="!uploadLoading">確認並上傳設計稿</span>
                         <span x-show="uploadLoading">上傳中...</span>
                     </button>
-                    <div x-show="uploadDone" class="bg-emerald-50 text-emerald-700 p-3 rounded-xl text-xs font-black text-center border border-emerald-100">✓ 設計稿已成功儲存至報價系統</div>
+                    <div x-show="uploadDone" class="bg-emerald-50 text-emerald-700 p-3 rounded-xl text-xs font-black text-center border border-emerald-100">✓ 設計稿已成功儲存並關聯報價單</div>
                 </div>
             </div>
+
             <button @click="showSuccess = false; window.location.reload()" class="mt-8 text-slate-400 font-bold underline text-xs uppercase tracking-widest text-center">返回首頁</button>
         </div>
     </div>
@@ -203,7 +224,7 @@
                 selectedStageId: 'growth', selectedPlanId: 'C', selectedPlan: {}, selectedMaterial: { name: '尼龍（有線）', surcharge: 1.2, type: '有線' },
                 quantity: 4500, showForm: false, loading: false, showSuccess: false, quoteNumber: '',
                 formData: { company: '', name: '', email: '', contact: '' },
-                stages: [{ id: 'startup', name: '新創測試市場', icon: '🚀', desc: '低起訂量，極速打樣驗證品牌潛力。' }, { id: 'growth', name: '成長擴張', icon: '📈', desc: '最佳質感與規模效益平衡點。', recommended: true }, { id: 'enterprise', name: '企業採購', icon: '🏢', desc: '極致量產，穩定供應鏈支持。' }],
+                stages: [{ id: 'startup', name: '新創測試市場', icon: '🚀', desc: '低起訂量，極速打樣驗證市場。' }, { id: 'growth', name: '成長擴張', icon: '📈', desc: '最佳質感與規模效益平衡點。', recommended: true }, { id: 'enterprise', name: '企業採購', icon: '🏢', desc: '極致量產，全球供應鏈穩定支持。' }],
                 allPlans: [{ id: 'A', name: '單包基本', base: 5.63, moq: 550 }, { id: 'B', name: '單包進階', base: 5.63, moq: 550 }, { id: 'C', name: '盒裝基本', base: 3.00, moq: 4500, canBox: true }, { id: 'D', name: '盒裝進階', base: 2.80, moq: 15000, canBox: true }, { id: 'E', name: '客製規格', base: 0, moq: '專案評估', canBox: true }],
                 materials: [{ name: '尼龍（有線）', surcharge: 1.2, type: '有線' }, { name: '玉米纖維（有線）', surcharge: 1.2, type: '有線' }, { name: '尼龍（無線）', surcharge: 1.0, type: '無線' }, { name: '不織布（無線）', surcharge: 0.7, type: '無線' }],
                 qtyOptions: [500, 550, 1000, 2000, 4500, 10000, 20000],
@@ -224,10 +245,9 @@
                     this.quoteNumber = `QT-${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(Math.floor(Math.random()*9999)).padStart(4,'0')}`;
                     const payload = { quoteNumber: this.quoteNumber, customer: this.formData, quoteDetails: { plan: `方案 ${this.selectedPlanId}｜${this.selectedPlan.name}`, material: this.selectedMaterial.name, quantity: this.quantity, unitPrice: this.finalUnitPrice, totalPrice: this.totalPrice, boxType: this.canBox ? this.boxName : '無' }};
                     try {
-                        await fetch(gasUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                        await fetch(gasUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
                         await new Promise(r => setTimeout(r, 2500));
-                        this.showSuccess = true;
-                        this.showForm = false;
+                        this.showSuccess = true; this.showForm = false;
                     } catch (err) { alert('發送失敗'); } finally { this.loading = false; }
                 }
             }
