@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>茶匯公司 | 專業茶包 OEM 客製化報價系統</title>
-    <script src="https://www.google.com/recaptcha/api.js?render=您的_RECAPTCHA_SITE_KEY"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LcivkQsAAAAAHwFJqqT6KHphabDFuYsm2d8t915"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -379,14 +379,14 @@
                 quoteNumber: '', 
                 formData: { company: '', name: '', email: '', contact: '' },
                 
-                // 上傳狀態
+                // 新增上傳狀態
                 uploadStep: 'email',
                 uploadEmail: '',
                 otpInput: '',
                 isVerifying: false,
                 isUploading: false,
                 uploadToken: '',
-                gasUrl: 'https://script.google.com/macros/s/AKfycbzAQ4XA5e1I2rCBjX9x7XEjA6m2qB8egcRUtFm_j_Vb3N2iQ5lm2FhhK_O--Xur_c-5/exec', 
+                gasUrl: 'https://script.google.com/macros/s/AKfycbzAQ4XA5e1I2rCBjX9x7XEjA6m2qB8egcRUtFm_j_Vb3N2iQ5lm2FhhK_O--Xur_c-5/exec', // <--- 這裡記得填入最新的 URL
 
                 stages: [
                     { id: 'startup', name: '新創測試市場', icon: '🚀', desc: '低起訂量市場切入點，極速打樣驗證品牌潛力。' },
@@ -453,7 +453,7 @@
                 async handleSubmit() {
                     this.loading = true;
                     try {
-                        // 取得 reCAPTCHA Token
+                        // 1. 取得 reCAPTCHA Token
                         const recaptchaToken = await new Promise((resolve) => {
                             grecaptcha.ready(() => {
                                 grecaptcha.execute('6LcivkQsAAAAAHwFJqqT6KHphabDFuYsm2d8t915', {action: 'submit'}).then(resolve);
@@ -461,11 +461,12 @@
                         });
 
                         const now = new Date();
-                        // 強化單號
-                        const randomSuffix = Math.random().toString(36).substring(2, 7).toUpperCase();
-                        this.quoteNumber = `QT-${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}-${randomSuffix}`;
-                        this.uploadEmail = this.formData.email;
+                        // 強化單號 (難以猜測)
+                        const randomId = Math.random().toString(36).substring(2, 7).toUpperCase();
+                        this.quoteNumber = `QT-${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}-${randomId}`;
+                        this.uploadEmail = this.formData.email; 
 
+                        // 2. 僅傳送關鍵參數 (安全加固)
                         const payload = {
                             action: 'saveQuote',
                             recaptchaToken: recaptchaToken,
@@ -483,7 +484,11 @@
                             }
                         };
 
-                        const res = await fetch(this.gasUrl, { method: 'POST', body: JSON.stringify(payload) });
+                        // 3. 發送請求 (移除 no-cors 以接收 JSON 回應)
+                        const res = await fetch(this.gasUrl, {
+                            method: 'POST',
+                            body: JSON.stringify(payload)
+                        });
                         const data = await res.json();
                         
                         if (data.success) {
@@ -495,7 +500,7 @@
                     } catch (err) { alert('系統連線異常，請稍後再試。'); } finally { this.loading = false; }
                 },
 
-                // 檔案上傳 OTP 邏輯 (使用原有架構)
+                // 檔案上傳相關邏輯
                 async sendOTP() {
                     if (!this.uploadEmail || !this.quoteNumber) return alert('請填寫報價編號與 Email');
                     this.isVerifying = true;
