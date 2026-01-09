@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>茶匯公司 | 專業茶包 OEM 客製化報價系統</title>
+    <script src="https://www.google.com/recaptcha/api.js?render=您的_RECAPTCHA_SITE_KEY"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -375,17 +376,17 @@
                 showForm: false,
                 loading: false,
                 showSuccess: false,
-                quoteNumber: '', // 這邊會存 QT-XXXX
+                quoteNumber: '', 
                 formData: { company: '', name: '', email: '', contact: '' },
                 
-                // 新增上傳狀態
+                // 上傳狀態
                 uploadStep: 'email',
                 uploadEmail: '',
                 otpInput: '',
                 isVerifying: false,
                 isUploading: false,
                 uploadToken: '',
-                gasUrl: 'https://script.google.com/macros/s/AKfycbzAQ4XA5e1I2rCBjX9x7XEjA6m2qB8egcRUtFm_j_Vb3N2iQ5lm2FhhK_O--Xur_c-5/exec', 
+                gasUrl: '您的_GAS_網頁應用程式_URL', 
 
                 stages: [
                     { id: 'startup', name: '新創測試市場', icon: '🚀', desc: '低起訂量市場切入點，極速打樣驗證品牌潛力。' },
@@ -448,35 +449,53 @@
                     return product + fees;
                 },
 
-                // 提交報價
+                // 【安全升級】提交報價
                 async handleSubmit() {
                     this.loading = true;
-                    const now = new Date();
-                    this.quoteNumber = `QT-${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(Math.floor(Math.random()*9999)).padStart(4,'0')}`;
-                    this.uploadEmail = this.formData.email; // 同步 Email 方便稍後上傳使用
-
-                    const payload = {
-                        action: 'saveQuote',
-                        quoteNumber: this.quoteNumber,
-                        customer: this.formData,
-                        quoteDetails: {
-                            plan: `方案 ${this.selectedPlanId}｜${this.selectedPlan.name}`,
-                            material: this.selectedMaterial.name,
-                            quantity: this.quantity,
-                            unitPrice: this.finalUnitPrice,
-                            totalPrice: this.totalPrice
-                        }
-                    };
-
                     try {
-                        await fetch(this.gasUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
-                        await new Promise(r => setTimeout(r, 2000));
-                        this.showSuccess = true;
-                        this.showForm = false;
-                    } catch (err) { alert('發送失敗，請確認網路連線。'); } finally { this.loading = false; }
+                        // 取得 reCAPTCHA Token
+                        const recaptchaToken = await new Promise((resolve) => {
+                            grecaptcha.ready(() => {
+                                grecaptcha.execute('您的_RECAPTCHA_SITE_KEY', {action: 'submit'}).then(resolve);
+                            });
+                        });
+
+                        const now = new Date();
+                        // 強化單號
+                        const randomSuffix = Math.random().toString(36).substring(2, 7).toUpperCase();
+                        this.quoteNumber = `QT-${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}-${randomSuffix}`;
+                        this.uploadEmail = this.formData.email;
+
+                        const payload = {
+                            action: 'saveQuote',
+                            recaptchaToken: recaptchaToken,
+                            quoteNumber: this.quoteNumber,
+                            customer: {
+                                company: this.formData.company.substring(0, 100),
+                                name: this.formData.name.substring(0, 50),
+                                email: this.formData.email,
+                                contact: this.formData.contact.substring(0, 50)
+                            },
+                            params: {
+                                planId: this.selectedPlanId,
+                                materialName: this.selectedMaterial.name,
+                                quantity: parseInt(this.quantity)
+                            }
+                        };
+
+                        const res = await fetch(this.gasUrl, { method: 'POST', body: JSON.stringify(payload) });
+                        const data = await res.json();
+                        
+                        if (data.success) {
+                            this.showSuccess = true;
+                            this.showForm = false;
+                        } else {
+                            alert('驗證失敗：' + data.msg);
+                        }
+                    } catch (err) { alert('系統連線異常，請稍後再試。'); } finally { this.loading = false; }
                 },
 
-                // 檔案上傳相關邏輯
+                // 檔案上傳 OTP 邏輯 (使用原有架構)
                 async sendOTP() {
                     if (!this.uploadEmail || !this.quoteNumber) return alert('請填寫報價編號與 Email');
                     this.isVerifying = true;
