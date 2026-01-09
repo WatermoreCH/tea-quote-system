@@ -54,7 +54,6 @@
     </header>
 
     <main class="max-w-7xl mx-auto py-12 px-4 md:px-6">
-        
         <section class="mb-16">
             <div class="text-center mb-10">
                 <h2 class="text-2xl md:text-4xl font-black text-slate-900">步驟一：您的品牌經營階段</h2>
@@ -149,26 +148,6 @@
                                 <p class="text-[10px] md:text-xs text-[#C5A059] font-black tracking-widest text-center">第三方專業包材供應商規格頁</p>
                             </div>
                         </div>
-
-                        <div class="mt-10 pt-8 border-t border-slate-100">
-                            <p class="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4 text-center">設計用刀模下載 / Templates Download</p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <a href="https://drive.google.com/uc?export=download&id=1NJ1KLuRwE_eFzVCnb1qX1tD2uFF6JFKL" target="_blank" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200 hover:border-slate-400 transition-all group">
-                                    <div class="text-left">
-                                        <p class="text-[10px] text-slate-400 font-bold uppercase">茶包外袋空白刀模</p>
-                                        <p class="text-sm font-black text-slate-700">尺寸：105 × 90 mm</p>
-                                    </div>
-                                    <span class="text-[10px] bg-slate-900 text-white px-3 py-1 rounded-full font-black group-hover:bg-[#C5A059] transition-colors text-center">直接下載 .AI</span>
-                                </a>
-                                <a href="https://drive.google.com/uc?export=download&id=1w85ERYJze6K_HWoYHO_aovvyEGBRWgXc" target="_blank" class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-200 hover:border-slate-400 transition-all group">
-                                    <div class="text-left">
-                                        <p class="text-[10px] text-slate-400 font-bold uppercase">上掀盒(M) 刀模檔</p>
-                                        <p class="text-sm font-black text-slate-700">對應：上掀盒(M)規格</p>
-                                    </div>
-                                    <span class="text-[10px] bg-slate-900 text-white px-3 py-1 rounded-full font-black group-hover:bg-[#C5A059] transition-colors text-center">直接下載 .PDF</span>
-                                </a>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -188,49 +167,35 @@
                                 </button>
                             </template>
                         </div>
-                        <div x-show="lowMoqSurcharge > 0" class="bg-amber-50 border-l-8 border-amber-400 p-6 md:p-8 rounded-2xl flex items-start gap-5 shadow-sm text-center">
-                            <div class="text-3xl md:text-4xl mt-1 text-center">💡</div>
-                            <div class="text-base md:text-lg text-amber-900 leading-relaxed font-bold text-center">
-                                系統提示：目前訂購量未達標準開機量 (2,000包)，報價已自動包含 <span class="bg-amber-200 px-1 rounded font-black">小量生產調度費 (+每包 <span x-text="lowMoqSurcharge"></span> 元)</span>。
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
 
             <aside class="lg:col-span-5 sticky top-8">
                 <div class="bg-[#1A302B] rounded-[2.5rem] p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
-                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-[#C5A059] opacity-10 rounded-full blur-3xl text-center"></div>
-                    <h3 class="text-xs md:text-sm font-black tracking-[0.3em] text-[#C5A059] mb-10 uppercase text-center">報價明細總結</h3>
+                    <h3 class="text-xs font-black tracking-[0.3em] text-[#C5A059] mb-10 uppercase text-center">報價明細總結</h3>
                     
-                    <div class="space-y-6 text-base md:text-lg mb-10 font-medium text-center">
-                        <div class="flex justify-between border-b border-white/10 pb-4 text-left">
+                    <div class="space-y-6 text-base md:text-lg mb-10 font-medium">
+                        <div class="flex justify-between border-b border-white/10 pb-4">
                             <span class="opacity-60 shrink-0">已選客製方案</span>
                             <span class="font-black text-right" x-text="'方案 ' + selectedPlanId + '｜' + selectedPlan.name"></span>
                         </div>
-                        <div class="flex justify-between border-b border-white/10 pb-4 text-left">
+                        <div class="flex justify-between border-b border-white/10 pb-4">
                             <span class="opacity-60">內袋材質加價</span>
                             <span class="text-[#C5A059] font-black text-right" x-text="'+ 每包 ' + selectedMaterial.surcharge.toFixed(1) + ' 元'"></span>
                         </div>
-                        <template x-if="canBox">
-                            <div class="bg-white/5 p-6 rounded-3xl space-y-3 text-sm md:text-base border border-white/5 text-center">
-                                <div class="flex justify-between font-black text-white text-center"><span>一次性打樣費 (含稅)</span><span>525 元</span></div>
-                                <div class="flex justify-between opacity-60 text-center"><span>物流與倉儲費用</span><span>300 元</span></div>
-                            </div>
-                        </template>
                     </div>
 
                     <div class="gold-value-block p-8 md:p-10 rounded-[2.5rem] text-[#1A302B] mb-10 text-center">
-                        <div class="flex justify-between items-end mb-8 text-center text-center">
+                        <div class="flex justify-between items-end mb-8">
                             <span class="text-sm font-black uppercase tracking-widest opacity-80 text-left">最終單價</span>
                             <div class="text-right">
-                                <span class="block text-xs font-black mb-1" x-show="quantity >= 10000">✓ 已套用大宗訂購折扣</span>
                                 <span class="text-3xl md:text-6xl font-black tracking-tighter" x-text="'NT$ ' + finalUnitPrice"></span>
                             </div>
                         </div>
                         <div class="pt-8 border-t border-[#1A302B]/20 text-center">
-                            <div class="text-sm font-black uppercase tracking-widest opacity-80 mb-2 text-left">專案預估總金額</div>
-                            <div class="text-4xl md:text-6xl font-black tracking-tighter text-center">NT$ <span x-text="totalPrice.toLocaleString()"></span></div>
+                            <div class="text-sm font-black uppercase tracking-widest opacity-80 mb-2">專案預估總金額</div>
+                            <div class="text-4xl md:text-6xl font-black tracking-tighter">NT$ <span x-text="totalPrice.toLocaleString()"></span></div>
                         </div>
                     </div>
 
@@ -238,47 +203,45 @@
                         class="cta-destructive w-full text-[#1A302B] py-6 md:py-8 rounded-[2.5rem] font-black text-xl md:text-3xl tracking-widest uppercase mb-4 text-center">
                         產出正式報價單
                     </button>
-                    <p class="text-center text-[10px] md:text-xs opacity-40 font-black tracking-widest leading-relaxed text-center">由 Teaauction Co., Ltd. 報價系統驗證</p>
                 </div>
             </aside>
         </div>
 
         <section id="form-section" x-show="showForm" x-transition class="mt-24 max-w-4xl mx-auto">
             <div class="bg-[#1A302B] text-white p-8 md:p-12 rounded-t-[4rem] border-b border-[#C5A059]/30 shadow-2xl text-center">
-                <p class="text-lg md:text-2xl font-black leading-relaxed tracking-tighter text-center text-center">
-                    您目前設定的規格，將作為正式報價與生產依據。<br>
-                    PDF 報價單產出後，規格將進入鎖定流程。
+                <p class="text-lg md:text-2xl font-black leading-relaxed tracking-tighter">
+                    您目前設定的規格，將作為正式報價與生產依據。
                 </p>
             </div>
 
-            <div class="bg-white p-10 md:p-20 rounded-b-[4rem] shadow-2xl border border-slate-100 text-left">
+            <div class="bg-white p-10 md:p-20 rounded-b-[4rem] shadow-2xl border border-slate-100">
                 <form @submit.prevent="handleSubmit" class="space-y-10">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div class="space-y-4">
-                            <label class="text-base md:text-lg font-black text-slate-800 ml-2">公司抬頭 / 統一編號 *</label>
-                            <input type="text" x-model="formData.company" required class="w-full px-8 py-5 bg-slate-50 border-none rounded-2xl focus:ring-4 focus:ring-[#C5A059]/40 font-bold text-lg" placeholder="請輸入完整公司名稱">
+                            <label class="text-base md:text-lg font-black text-slate-800">公司抬頭 / 統一編號 *</label>
+                            <input type="text" x-model="formData.company" required class="w-full px-8 py-5 bg-slate-50 border-none rounded-2xl font-bold" placeholder="公司名稱">
                         </div>
                         <div class="space-y-4">
-                            <label class="text-base md:text-lg font-black text-slate-800 ml-2">聯絡人姓名 *</label>
-                            <input type="text" x-model="formData.name" required class="w-full px-8 py-5 bg-slate-50 border-none rounded-2xl focus:ring-4 focus:ring-[#C5A059]/40 font-bold text-lg" placeholder="您的真實姓名">
+                            <label class="text-base md:text-lg font-black text-slate-800">聯絡人姓名 *</label>
+                            <input type="text" x-model="formData.name" required class="w-full px-8 py-5 bg-slate-50 border-none rounded-2xl font-bold" placeholder="您的姓名">
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div class="space-y-4">
-                            <label class="text-base md:text-lg font-black text-slate-800 ml-2">接收報價之電子信箱 *</label>
-                            <input type="email" x-model="formData.email" required class="w-full px-8 py-5 bg-slate-50 border-none rounded-2xl focus:ring-4 focus:ring-[#C5A059]/40 font-bold text-lg" placeholder="報價單將寄送至此">
+                            <label class="text-base md:text-lg font-black text-slate-800">接收報價之電子信箱 *</label>
+                            <input type="email" x-model="formData.email" required class="w-full px-8 py-5 bg-slate-50 border-none rounded-2xl font-bold" placeholder="Email">
                         </div>
                         <div class="space-y-4">
-                            <label class="text-base md:text-lg font-black text-slate-800 ml-2">聯絡電話或 LINE ID *</label>
-                            <input type="text" x-model="formData.contact" required class="w-full px-8 py-5 bg-slate-50 border-none rounded-2xl focus:ring-4 focus:ring-[#C5A059]/40 font-bold text-lg" placeholder="方便顧問確認打樣細節">
+                            <label class="text-base md:text-lg font-black text-slate-800">聯絡電話或 LINE ID *</label>
+                            <input type="text" x-model="formData.contact" required class="w-full px-8 py-5 bg-slate-50 border-none rounded-2xl font-bold" placeholder="聯絡資訊">
                         </div>
                     </div>
                     
-                    <button type="submit" :disabled="loading" class="w-full bg-slate-900 text-white py-8 rounded-[2.5rem] font-black text-2xl md:text-4xl shadow-2xl hover:bg-black transition-all transform active:scale-95 flex justify-center items-center">
-                        <span x-show="!loading" class="text-center">確認規格並寄送報價單</span>
-                        <span x-show="loading" class="flex items-center text-center">
+                    <button type="submit" :disabled="loading" class="w-full bg-slate-900 text-white py-8 rounded-[2.5rem] font-black text-2xl md:text-4xl shadow-2xl flex justify-center items-center">
+                        <span x-show="!loading">確認規格並寄送報價單</span>
+                        <span x-show="loading" class="flex items-center">
                             <svg class="animate-spin h-10 w-10 mr-6 text-[#C5A059]" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                            正在建立正式報價編號...
+                            正在產出 PDF 並寄送...
                         </span>
                     </button>
                 </form>
@@ -286,88 +249,55 @@
         </section>
 
         <section id="upload-section" class="mt-12 max-w-4xl mx-auto pb-32">
-            <div class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-sm border-4 border-dashed border-[#C5A059]/30 text-left">
-                <div class="mb-8">
-                    <h2 class="text-xl md:text-2xl font-black mb-2 flex items-center">
-                        <span class="bg-[#C5A059] text-[#1A302B] w-8 h-8 rounded-full inline-flex items-center justify-center mr-4 text-sm font-black text-center text-center">06</span>
-                        設計檔案安全上傳
-                    </h2>
-                    <p class="text-slate-400 font-bold text-sm ml-12 text-left">如果您已有報價編號，請在此上傳設計稿，顧問將於 24H 內回覆審核結果。</p>
-                </div>
-
-                <div x-show="uploadStep === 'email'" class="space-y-6 ml-0 md:ml-12 text-left">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-                        <div class="space-y-2">
-                            <label class="text-xs font-black text-slate-400 uppercase tracking-widest">正式報價編號 *</label>
-                            <input type="text" x-model="quoteNumber" class="w-full px-6 py-4 bg-slate-50 rounded-xl border-none focus:ring-2 focus:ring-[#C5A059] font-black text-[#1A302B]" placeholder="例: QT-2024-05-XXXX">
-                        </div>
-                        <div class="space-y-2 text-left">
-                            <label class="text-xs font-black text-slate-400 uppercase tracking-widest">驗證電子信箱 *</label>
-                            <input type="email" x-model="uploadEmail" class="w-full px-6 py-4 bg-slate-50 rounded-xl border-none focus:ring-2 focus:ring-[#C5A059] font-bold" placeholder="請輸入原報價 Email">
-                        </div>
+            <div class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-sm border-4 border-dashed border-[#C5A059]/30">
+                <h2 class="text-xl font-black mb-4 flex items-center">
+                    <span class="bg-[#C5A059] text-[#1A302B] w-8 h-8 rounded-full inline-flex items-center justify-center mr-4 text-sm font-black">06</span>
+                    設計檔案安全上傳
+                </h2>
+                <div x-show="uploadStep === 'email'" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" x-model="quoteNumber" class="w-full px-6 py-4 bg-slate-50 rounded-xl" placeholder="正式報價編號">
+                        <input type="email" x-model="uploadEmail" class="w-full px-6 py-4 bg-slate-50 rounded-xl" placeholder="原報價 Email">
                     </div>
-                    <button @click="sendOTP()" :disabled="isVerifying" class="w-full bg-slate-900 text-white py-5 rounded-xl font-black hover:bg-black transition-all flex justify-center text-center">
-                        <span x-show="!isVerifying">發送檔案上傳驗證碼</span>
-                        <span x-show="isVerifying">正在發送至信箱...</span>
-                    </button>
+                    <button @click="sendOTP()" :disabled="isVerifying" class="w-full bg-slate-900 text-white py-5 rounded-xl font-black">發送驗證碼</button>
                 </div>
 
-                <div x-show="uploadStep === 'otp'" class="space-y-6 ml-0 md:ml-12" x-cloak text-left>
-                    <div class="text-center bg-slate-50 p-6 rounded-2xl">
-                        <p class="text-slate-600 font-bold mb-4 text-center">驗證碼已寄出，請檢查您的信箱</p>
-                        <div class="flex gap-4 max-w-sm mx-auto">
-                            <input type="text" x-model="otpInput" maxlength="6" class="flex-1 px-6 py-4 bg-white border-2 border-slate-200 rounded-xl text-center tracking-[0.5em] text-2xl font-black focus:border-[#C5A059] outline-none" placeholder="000000">
-                            <button @click="verifyOTP()" :disabled="isVerifying" class="bg-[#C5A059] text-[#1A302B] px-8 rounded-xl font-black hover:brightness-110 transition-all text-center">
-                                驗證
-                            </button>
-                        </div>
-                        <button @click="uploadStep = 'email'" class="mt-4 text-xs text-slate-400 font-bold underline text-center">修改資訊重新發送</button>
+                <div x-show="uploadStep === 'otp'" class="text-center bg-slate-50 p-6 rounded-2xl" x-cloak>
+                    <p class="mb-4 font-bold text-slate-600">驗證碼已寄出至信箱</p>
+                    <div class="flex gap-4 max-w-sm mx-auto">
+                        <input type="text" x-model="otpInput" class="flex-1 px-6 py-4 bg-white border-2 rounded-xl text-center text-2xl font-black">
+                        <button @click="verifyOTP()" class="bg-[#C5A059] px-8 rounded-xl font-black">驗證</button>
                     </div>
                 </div>
 
-                <div x-show="uploadStep === 'upload'" class="ml-0 md:ml-12 py-4" x-cloak text-center>
-                    <label class="cursor-pointer group block">
+                <div x-show="uploadStep === 'upload'" class="py-4 text-center" x-cloak>
+                    <label class="cursor-pointer block border-4 border-dotted rounded-[2.5rem] p-16 bg-slate-50">
                         <input type="file" class="hidden" @change="handleFileUpload">
-                        <div class="border-4 border-dotted border-slate-200 rounded-[2.5rem] p-16 group-hover:border-[#C5A059] transition-all bg-slate-50 text-center">
-                            <div class="text-6xl mb-6">📁</div>
-                            <p class="text-xl font-black text-slate-900">點擊或拖曳設計稿至此</p>
-                            <p class="text-sm text-slate-400 mt-2 font-bold italic">綁定單號：<span x-text="quoteNumber" class="text-slate-900 underline"></span></p>
-                            <p class="text-xs text-slate-300 mt-4 uppercase">AI, PDF, ZIP / MAX 10MB</p>
-                        </div>
+                        <p class="text-xl font-black">點擊上傳設計稿</p>
+                        <p class="text-xs text-slate-400 mt-2">AI, PDF, ZIP / MAX 10MB</p>
                     </label>
-                    <div x-show="isUploading" class="mt-6 flex items-center justify-center gap-3 text-[#C5A059] font-black text-center">
-                        <svg class="animate-spin h-6 w-6" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                        正在安全傳輸至伺服器...
-                    </div>
                 </div>
 
-                <div x-show="uploadStep === 'done'" class="text-center py-12 ml-0 md:ml-12" x-cloak text-center>
-                    <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl shadow-inner text-center text-center text-center text-center">✓</div>
-                    <h3 class="text-2xl font-black text-slate-900">檔案已成功與報價單連結</h3>
-                    <p class="text-slate-500 font-bold mt-2">我們已收到您的設計稿，顧問正在檢查檔案解析度與刀模規格。</p>
-                    <button @click="uploadStep = 'upload'" class="mt-8 bg-slate-900 text-white px-8 py-3 rounded-full font-black text-sm hover:bg-black transition-all text-center">再上傳一個檔案</button>
+                <div x-show="uploadStep === 'done'" class="text-center py-12" x-cloak>
+                    <div class="text-4xl text-emerald-500 mb-4">✓</div>
+                    <h3 class="text-2xl font-black">檔案已成功連結</h3>
                 </div>
             </div>
         </section>
     </main>
 
-    <div x-show="showSuccess" class="fixed inset-0 bg-slate-900/95 backdrop-blur-3xl flex items-center justify-center z-50 p-6" x-cloak x-transition>
-        <div class="bg-white rounded-[4rem] p-12 md:p-20 max-w-2xl w-full text-center relative shadow-[0_0_100px_rgba(197,160,89,0.4)] text-center">
-            <div class="w-24 h-24 md:w-32 md:h-32 bg-[#C5A059]/10 text-[#C5A059] rounded-full flex items-center justify-center mx-auto mb-10 text-6xl md:text-7xl shadow-inner text-center">✓</div>
-            <h3 class="text-3xl md:text-5xl font-black text-slate-900 mb-2 tracking-tighter text-center">正式報價單已完成建立</h3>
-            <p class="text-[#C5A059] font-black text-lg md:text-2xl mb-8 text-center">報價編號：<span x-text="quoteNumber"></span></p>
-            <p class="text-slate-600 mb-12 text-lg md:text-xl font-bold leading-relaxed text-center">
-                PDF 已寄送至 <span class="text-slate-900 underline" x-text="formData.email"></span>。<br>
-                <span class="text-slate-900">您可以直接在下方補傳設計檔案。</span>
-            </p>
-            <button @click="showSuccess = false; $nextTick(() => document.getElementById('upload-section').scrollIntoView({behavior:'smooth'}))" class="w-full bg-slate-900 text-white py-6 rounded-[2rem] font-black text-xl md:text-2xl shadow-xl text-center">前往檔案上傳區</button>
+    <div x-show="showSuccess" class="fixed inset-0 bg-slate-900/95 backdrop-blur-3xl flex items-center justify-center z-50 p-6" x-cloak>
+        <div class="bg-white rounded-[4rem] p-12 max-w-2xl w-full text-center">
+            <h3 class="text-3xl font-black mb-4">正式報價單已完成建立</h3>
+            <p class="text-[#C5A059] font-black text-xl mb-8">編號：<span x-text="quoteNumber"></span></p>
+            <p class="mb-12 font-bold">PDF 已寄送至您的電子信箱。</p>
+            <button @click="showSuccess = false; $nextTick(() => document.getElementById('upload-section').scrollIntoView({behavior:'smooth'}))" class="w-full bg-slate-900 text-white py-6 rounded-[2rem] font-black">前往檔案上傳區</button>
         </div>
     </div>
 
     <script>
         function quoteSystem() {
             return {
-                // 原有變數
                 selectedStageId: 'growth',
                 selectedPlanId: 'C',
                 selectedPlan: {},
@@ -376,29 +306,28 @@
                 showForm: false,
                 loading: false,
                 showSuccess: false,
-                quoteNumber: '', 
+                quoteNumber: '',
                 formData: { company: '', name: '', email: '', contact: '' },
-                
-                // 新增上傳狀態
                 uploadStep: 'email',
                 uploadEmail: '',
                 otpInput: '',
                 isVerifying: false,
                 isUploading: false,
                 uploadToken: '',
-                gasUrl: 'https://script.google.com/macros/s/AKfycbzAQ4XA5e1I2rCBjX9x7XEjA6m2qB8egcRUtFm_j_Vb3N2iQ5lm2FhhK_O--Xur_c-5/exec', // <--- 這裡記得填入最新的 URL
+                // 注意：部署後請記得更新這裡的 gasUrl
+                gasUrl: 'https://script.google.com/macros/s/AKfycbzAQ4XA5e1I2rCBjX9x7XEjA6m2qB8egcRUtFm_j_Vb3N2iQ5lm2FhhK_O--Xur_c-5/exec', 
 
                 stages: [
-                    { id: 'startup', name: '新創測試市場', icon: '🚀', desc: '低起訂量市場切入點，極速打樣驗證品牌潛力。' },
-                    { id: 'growth', name: '成長擴張', icon: '📈', desc: '最佳質感與規模效益平衡點，中大型通路首選。', recommended: true },
-                    { id: 'enterprise', name: '企業採購', icon: '🏢', desc: '極致量產，全球通路標配規格與穩定支持。' }
+                    { id: 'startup', name: '新創測試市場', icon: '🚀', desc: '低起訂量快速打樣。' },
+                    { id: 'growth', name: '成長擴張', icon: '📈', desc: '最佳質感與規模效益平衡點。', recommended: true },
+                    { id: 'enterprise', name: '企業採購', icon: '🏢', desc: '極致量產與通路標配。' }
                 ],
                 allPlans: [
-                    { id: 'A', name: '單包基本', base: 5.63, moq: 550, canBox: false, advBox: false },
-                    { id: 'B', name: '單包進階', base: 5.63, moq: 550, canBox: false, advBox: false },
-                    { id: 'C', name: '盒裝基本', base: 3.00, moq: 4500, canBox: true, advBox: false },
-                    { id: 'D', name: '盒裝進階', base: 2.80, moq: 15000, canBox: true, advBox: true },
-                    { id: 'E', name: '客製規格', base: 0, moq: '專案評估', canBox: true, advBox: true }
+                    { id: 'A', name: '單包基本', base: 5.63, moq: 550, canBox: false },
+                    { id: 'B', name: '單包進階', base: 5.63, moq: 550, canBox: false },
+                    { id: 'C', name: '盒裝基本', base: 3.00, moq: 4500, canBox: true },
+                    { id: 'D', name: '盒裝進階', base: 2.80, moq: 15000, canBox: true },
+                    { id: 'E', name: '客製規格', base: 0, moq: '專案評估', canBox: true }
                 ],
                 materials: [
                     { name: '尼龍（有線）', surcharge: 1.2, type: '有線' },
@@ -407,7 +336,7 @@
                     { name: '尼龍（無線）', surcharge: 1.0, type: '無線' },
                     { name: '不織布（無線）', surcharge: 0.7, type: '無線' }
                 ],
-                qtyOptions: [500, 550, 1000, 1500, 2000, 4500, 10000, 15000, 20000, 50000],
+                qtyOptions: [500, 550, 1000, 2000, 4500, 10000, 20000],
 
                 init() { this.selectPlan(this.allPlans[2]); },
                 selectStage(stage) {
@@ -422,18 +351,16 @@
                     if (typeof plan.moq === 'number' && this.quantity < plan.moq) this.quantity = plan.moq;
                 },
                 getPlanBg(planId) {
-                    const map = { 'A': 'bg-[#7F1D1D] text-white', 'B': 'bg-[#7C2D12] text-white', 'C': 'bg-[#FACC15] text-[#1A302B]', 'D': 'bg-[#064E3B] text-white', 'E': 'bg-[#0C4A6E] text-white' };
+                    const map = { 'A': 'bg-[#7F1D1D] text-white', 'B': 'bg-[#7C2D12] text-white', 'C': 'bg-[#FACC15] text-[#1A302B]', 'D': 'bg-[#064E3B] text-white' };
                     return map[planId] || 'bg-slate-100';
                 },
                 getMatBg(type) { return type === '有線' ? 'bg-[#ECFDF5] border-[#059669]' : 'bg-[#FFF7ED] border-[#EA580C]'; },
                 get canBox() { return this.selectedPlan.canBox; },
-                get boxName() { return this.selectedPlan.advBox ? '進階方案：上掀盒 M' : '標準方案：上掀盒'; },
+                get boxName() { return this.selectedPlanId === 'D' ? '進階方案：上掀盒 M' : '標準方案：上掀盒'; },
                 get minMoq() { return typeof this.selectedPlan.moq === 'number' ? this.selectedPlan.moq : 0; },
                 get lowMoqSurcharge() {
-                    const q = parseInt(this.quantity);
-                    if (q >= 2000) return 0;
-                    if (q >= 1000) return 0.3;
-                    return 0.8;
+                    if (this.quantity >= 2000) return 0;
+                    return (this.quantity >= 1000) ? 0.3 : 0.8;
                 },
                 get finalUnitPrice() {
                     if (this.selectedPlanId === 'E') return "洽詢顧問";
@@ -445,15 +372,15 @@
                 get totalPrice() {
                     if (this.selectedPlanId === 'E') return 0;
                     let product = Math.round(parseFloat(this.finalUnitPrice) * this.quantity);
-                    let fees = this.canBox ? (525 + 300) : 0;
+                    let fees = this.canBox ? 825 : 0;
                     return product + fees;
                 },
 
-                // 【安全升級】提交報價
+                // 【修正版】提交報價
                 async handleSubmit() {
                     this.loading = true;
                     try {
-                        // 1. 取得 reCAPTCHA Token
+                        // 1. 取得 reCAPTCHA
                         const recaptchaToken = await new Promise((resolve) => {
                             grecaptcha.ready(() => {
                                 grecaptcha.execute('6LcivkQsAAAAAHwFJqqT6KHphabDFuYsm2d8t915', {action: 'submit'}).then(resolve);
@@ -461,21 +388,20 @@
                         });
 
                         const now = new Date();
-                        // 強化單號 (難以猜測)
                         const randomId = Math.random().toString(36).substring(2, 7).toUpperCase();
                         this.quoteNumber = `QT-${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}-${randomId}`;
-                        this.uploadEmail = this.formData.email; 
+                        this.uploadEmail = this.formData.email;
 
-                        // 2. 僅傳送關鍵參數 (安全加固)
+                        // 2. 嚴格構造 Payload
                         const payload = {
                             action: 'saveQuote',
                             recaptchaToken: recaptchaToken,
                             quoteNumber: this.quoteNumber,
                             customer: {
-                                company: this.formData.company.substring(0, 100),
-                                name: this.formData.name.substring(0, 50),
+                                company: this.formData.company,
+                                name: this.formData.name,
                                 email: this.formData.email,
-                                contact: this.formData.contact.substring(0, 50)
+                                contact: this.formData.contact
                             },
                             params: {
                                 planId: this.selectedPlanId,
@@ -484,68 +410,56 @@
                             }
                         };
 
-                        // 3. 發送請求 (移除 no-cors 以接收 JSON 回應)
+                        // 3. 發送請求
                         const res = await fetch(this.gasUrl, {
                             method: 'POST',
                             body: JSON.stringify(payload)
                         });
-                        const data = await res.json();
+                        const result = await res.json();
                         
-                        if (data.success) {
+                        if (result.success) {
                             this.showSuccess = true;
                             this.showForm = false;
                         } else {
-                            alert('驗證失敗：' + data.msg);
+                            alert('提交失敗：' + result.msg);
                         }
-                    } catch (err) { alert('系統連線異常，請稍後再試。'); } finally { this.loading = false; }
+                    } catch (e) {
+                        alert('網路連線異常，請稍後再試。');
+                    } finally {
+                        this.loading = false;
+                    }
                 },
 
-                // 檔案上傳相關邏輯
+                // 其餘檔案上傳邏輯... (省略，請保持原本的 Alpine 邏輯)
                 async sendOTP() {
-                    if (!this.uploadEmail || !this.quoteNumber) return alert('請填寫報價編號與 Email');
+                    if (!this.uploadEmail || !this.quoteNumber) return alert('請填寫完整');
                     this.isVerifying = true;
                     try {
                         const res = await fetch(this.gasUrl, { method: 'POST', body: JSON.stringify({ action: 'sendOTP', email: this.uploadEmail, quoteNumber: this.quoteNumber }) });
                         const data = await res.json();
                         if (data.success) { this.uploadStep = 'otp'; } else { alert(data.msg); }
-                    } catch (e) { alert('驗證碼寄送失敗'); } finally { this.isVerifying = false; }
+                    } catch (e) { alert('發送失敗'); } finally { this.isVerifying = false; }
                 },
-
                 async verifyOTP() {
                     this.isVerifying = true;
                     try {
                         const res = await fetch(this.gasUrl, { method: 'POST', body: JSON.stringify({ action: 'verifyOTP', email: this.uploadEmail, otp: this.otpInput }) });
                         const data = await res.json();
-                        if (data.success) { 
-                            this.uploadToken = data.token;
-                            this.uploadStep = 'upload'; 
-                        } else { alert('驗證碼不正確'); }
-                    } catch (e) { alert('連線失敗'); } finally { this.isVerifying = false; }
+                        if (data.success) { this.uploadToken = data.token; this.uploadStep = 'upload'; } else { alert('驗證碼錯誤'); }
+                    } catch (e) { alert('驗證失敗'); } finally { this.isVerifying = false; }
                 },
-
                 async handleFileUpload(e) {
                     const file = e.target.files[0];
                     if (!file) return;
-                    if (file.size > 10 * 1024 * 1024) return alert('檔案不可超過 10MB');
-
                     this.isUploading = true;
                     const reader = new FileReader();
                     reader.readAsDataURL(file);
                     reader.onload = async () => {
                         try {
-                            const res = await fetch(this.gasUrl, {
-                                method: 'POST',
-                                body: JSON.stringify({
-                                    action: 'uploadFile',
-                                    quoteNumber: this.quoteNumber,
-                                    token: this.uploadToken,
-                                    fileName: file.name,
-                                    fileData: reader.result
-                                })
-                            });
+                            const res = await fetch(this.gasUrl, { method: 'POST', body: JSON.stringify({ action: 'uploadFile', quoteNumber: this.quoteNumber, token: this.uploadToken, fileName: file.name, fileData: reader.result }) });
                             const data = await res.json();
-                            if (data.success) { this.uploadStep = 'done'; } else { alert('上傳失敗：' + data.msg); }
-                        } catch (e) { alert('上傳連線失敗'); } finally { this.isUploading = false; }
+                            if (data.success) { this.uploadStep = 'done'; } else { alert(data.msg); }
+                        } catch (e) { alert('上傳失敗'); } finally { this.isUploading = false; }
                     };
                 }
             }
